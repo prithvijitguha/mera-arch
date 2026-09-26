@@ -23,4 +23,7 @@ cp -r ~/.local/share/mera-arch/configs/fastfetch ~/.config/fastfetch
 cp -r ~/.local/share/mera-arch/configs/ghostty ~/.config/ghostty
 cp -r ~/.local/share/mera-arch/configs/hunk ~/.config/hunk
 cp -r ~/.local/share/mera-arch/configs/neovim ~/.config/nvim
-cp -r ~/.local/share/mera-arch/configs/wofi ~/.config/wofi
+cp -r ~/.local/share/mera-arch/configs/wofi ~/.config/wofiA
+
+# Change default shell to zsh
+chsh -s $(which zsh)
