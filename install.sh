@@ -23,7 +23,7 @@ cp -r ~/.local/share/mera-arch/configs/neovim ~/.config/nvim
 cp -r ~/.local/share/mera-arch/configs/wofi ~/.config/wofi
 
 # Setup files
-source ~/.local/share/mera-arch/setup/setup-wofi.sh
+source ~/.local/share/mera-arch/setup/setup-gnome-hotkeys.sh
 
 # Change default shell to zsh
 chsh -s $(which zsh)
