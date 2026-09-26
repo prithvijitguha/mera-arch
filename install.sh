@@ -7,7 +7,6 @@ sudo pacman -Syu $(cat ~/.local/share/mera-arch/install/mera-arch-base-packages.
 
 # Start installing other terminal tools 
 source ~/.local/share/mera-arch/install/install-omz.sh
-source ~/.local/share/mera-arch/install/install-hunk.sh
 source ~/.local/share/mera-arch/install/install-tpm-tmux.sh
 
 # Then start adding the configs
@@ -21,7 +20,6 @@ cp ~/.local/share/mera-arch/configs/.vimrc ~/.vimrc
 cp -r ~/.local/share/mera-arch/configs/.vim ~/.config/.vim
 cp -r ~/.local/share/mera-arch/configs/fastfetch ~/.config/fastfetch
 cp -r ~/.local/share/mera-arch/configs/ghostty ~/.config/ghostty
-cp -r ~/.local/share/mera-arch/configs/hunk ~/.config/hunk
 cp -r ~/.local/share/mera-arch/configs/neovim ~/.config/nvim
 cp -r ~/.local/share/mera-arch/configs/wofi ~/.config/wofiA
 
