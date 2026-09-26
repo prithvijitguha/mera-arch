@@ -6,6 +6,11 @@ fzf
 bat
 eza
 vlc
+neovim
 chromium
 zsh
+fastfetch
+nodejs
+npm
 steam
+wofi

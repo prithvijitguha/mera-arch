@@ -131,5 +131,5 @@ export XDG_DATA_DIRS="/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/
 . "$HOME/.local/bin/env"
 
 # Meradeb integration
-export MERADEB_PATH="$HOME/.local/share/meradeb"
-export PATH="$HOME/.local/share/meradeb/bin:$HOME/.local/bin:$PATH"
+export MERAARCH="$HOME/.local/share/mera-arch"
+export PATH="$HOME/.local/share/mera-arch/bin:$HOME/.local/bin:$PATH"
