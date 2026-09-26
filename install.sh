@@ -1,11 +1,10 @@
-
 #!/bin/bash
 
 set -e
-# Start by installing minimal packages to start 
+# Start by installing minimal packages to start
 sudo pacman -Syu $(cat ~/.local/share/mera-arch/install/mera-arch-base-packages.txt)
 
-# Start installing other terminal tools 
+# Start installing other terminal tools
 source ~/.local/share/mera-arch/install/install-omz.sh
 source ~/.local/share/mera-arch/install/install-tpm-tmux.sh
 
@@ -21,7 +20,10 @@ cp -r ~/.local/share/mera-arch/configs/.vim ~/.config/.vim
 cp -r ~/.local/share/mera-arch/configs/fastfetch ~/.config/fastfetch
 cp -r ~/.local/share/mera-arch/configs/ghostty ~/.config/ghostty
 cp -r ~/.local/share/mera-arch/configs/neovim ~/.config/nvim
-cp -r ~/.local/share/mera-arch/configs/wofi ~/.config/wofiA
+cp -r ~/.local/share/mera-arch/configs/wofi ~/.config/wofi
+
+# Setup files
+source ~/.local/share/mera-arch/setup/setup-wofi.sh
 
 # Change default shell to zsh
 chsh -s $(which zsh)
