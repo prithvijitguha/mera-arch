@@ -16,11 +16,11 @@ cp ~/.local/share/mera-arch/configs/.profile ~/.profile
 cp ~/.local/share/mera-arch/configs/.tmux.conf ~/.tmux.conf
 cp ~/.local/share/mera-arch/configs/.vimrc ~/.vimrc
 
-cp -r ~/.local/share/mera-arch/configs/.vim ~/.config/.vim
-cp -r ~/.local/share/mera-arch/configs/fastfetch ~/.config/fastfetch
-cp -r ~/.local/share/mera-arch/configs/ghostty ~/.config/ghostty
-cp -r ~/.local/share/mera-arch/configs/neovim ~/.config/nvim
-cp -r ~/.local/share/mera-arch/configs/wofi ~/.config/wofi
+cp -R ~/.local/share/mera-arch/configs/.vim ~/.config/.vim
+cp -R ~/.local/share/mera-arch/configs/fastfetch ~/.config/fastfetch
+cp -R ~/.local/share/mera-arch/configs/ghostty ~/.config/ghostty
+cp -R ~/.local/share/mera-arch/configs/neovim ~/.config/nvim
+cp -R ~/.local/share/mera-arch/configs/wofi ~/.config/wofi
 
 # Setup files
 source ~/.local/share/mera-arch/setup/setup-gnome-hotkeys.sh
