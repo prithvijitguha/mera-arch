@@ -3,7 +3,7 @@
 
 set -e
 # Start by installing minimal packages to start 
-pacman -Syu $(cat ~/.local/share/mera-arch/install/mera-arch-base-packages.txt)
+sudo pacman -Syu $(cat ~/.local/share/mera-arch/install/mera-arch-base-packages.txt)
 
 # Start installing other terminal tools 
 source ~/.local/share/mera-arch/install/omz.sh

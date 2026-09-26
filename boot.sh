@@ -39,7 +39,7 @@ if [[ -d ~/.local/share/mera-arch/.git ]]; then
   git fetch origin
   git pull --ff-only
 else
-  git clone https://github.com/prithvijitguha/mera-arch.git ~/.local/share/mera-arch
+  git clone git@github.com:prithvijitguha/mera-arch.git ~/.local/share/mera-arch
   source ~/.local/share/mera-arch/install.sh
 fi
 
