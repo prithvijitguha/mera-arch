@@ -1,0 +1,13 @@
+show=drun
+width=600
+height=400
+location=center
+prompt=Search
+filter_rate=100
+allow_markup=true
+term=Ghostty
+gtk_dark=true
+no_actions=true
+hide_scroll=true
+browser=firefox-esr
+insensitive=true
