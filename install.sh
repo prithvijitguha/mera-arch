@@ -6,7 +6,9 @@ set -e
 sudo pacman -Syu $(cat ~/.local/share/mera-arch/install/mera-arch-base-packages.txt)
 
 # Start installing other terminal tools 
-source ~/.local/share/mera-arch/install/omz.sh
+source ~/.local/share/mera-arch/install/install-omz.sh
+source ~/.local/share/mera-arch/install/install-hunk.sh
+source ~/.local/share/mera-arch/install/install-tpm-tmux.sh
 
 # Then start adding the configs
 cp ~/.local/share/mera-arch/configs/.bashrc ~/.bashrc

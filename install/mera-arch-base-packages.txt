@@ -1,6 +1,5 @@
 curl
 unzip
-rustup
 tmux
 fzf
 bat
