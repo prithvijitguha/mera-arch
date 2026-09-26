@@ -1,0 +1,11 @@
+curl
+unzip
+rustup
+tmux
+fzf
+bat
+eza
+vlc
+chromium
+zsh
+steam
