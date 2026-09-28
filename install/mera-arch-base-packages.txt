@@ -12,3 +12,4 @@ fastfetch
 nodejs
 npm
 wofi
+fd
