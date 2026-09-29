@@ -16,8 +16,6 @@ cp ~/.local/share/mera-arch/configs/.profile ~/.profile
 cp ~/.local/share/mera-arch/configs/.tmux.conf ~/.tmux.conf
 cp ~/.local/share/mera-arch/configs/.vimrc ~/.vimrc
 cp ~/.local/share/mera-arch/configs/mango/config.conf ~/.config/mango/config.conf
-cp ~/.local/share/mera-arch/configs/mango/config.jsonc ~/.config/mango/config.jsonc
-cp ~/.local/share/mera-arch/configs/mango/style.css ~/.config/mango/style.css
 cp ~/.local/share/mera-arch/configs/mango/autostart.sh ~/.config/mango/autostart.sh
 
 cp -R ~/.local/share/mera-arch/configs/.vim ~/.config/.vim
