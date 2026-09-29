@@ -13,3 +13,6 @@ nodejs
 npm
 wofi
 fd
+ttf-jetbrains-mono-nerd
+wlr-randr
+waybar
