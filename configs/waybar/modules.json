@@ -4,27 +4,6 @@
     "all-outputs": true,
     "format": "{name}"
   },
-  "ext/window": {
-    "format": "   {}"
-  },
-  "pipewire": {
-    "format": "{icon} {volume}%",
-    "max-volume": 150,
-    "scroll-step": 5,
-    "format-muted": "",
-    "format-icons": {
-      "default": [
-        "",
-        "",
-        ""
-      ]
-    }
-  },
-  "bluetooth": {
-    "format": "",
-    "tooltip": true,
-    "tooltip-format": "{status}"
-  },
   "network": {
     "format-wifi": " {essid}",
     "tooltip": true,
