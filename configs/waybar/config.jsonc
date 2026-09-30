@@ -1,0 +1,24 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 42,
+  "spacing": 6,
+  // Left side
+  "modules-left": [
+    "ext/workspaces"
+  ],
+  // Right side
+  "modules-right": [
+    // "idle_inhibitor",
+    "pipewire",
+    "bluetooth",
+    "network",
+    "battery",
+    "clock",
+    "power"
+  ],
+  // Load module definitions
+  "include": [
+    "~/.config/waybar/modules.json"
+  ]
+}
