@@ -149,8 +149,8 @@ alias ll='eza -lah --icons --git'
 alias lt='eza --tree --level=2 --icons'
 
 # Cat replacement
-# Its batcat due to package clash in apt
-alias cat='batcat'
+# Its bat due to package clash in apt
+alias cat='bat'
 
 
 if [[ -f "$HOME/.zshrc_secrets" ]]; then

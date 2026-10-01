@@ -19,3 +19,4 @@ waybar
 mako
 blueman
 tree
+power-profiles-daemon
