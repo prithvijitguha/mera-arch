@@ -17,3 +17,5 @@ ttf-jetbrains-mono-nerd
 wlr-randr
 waybar
 mako
+blueman
+tree
