@@ -1,8 +1,8 @@
-/* Catppuccin Mocha — waybar style
- * Clean, minimal, consistent module pills
- */
+/* ============================================================
+ * Catppuccin Mocha — Rounded Pill Waybar
+ * ============================================================ */
 
-@define-color base     #1e1e2e;
+@define-color base      #1e1e2e;
 @define-color mantle    #181825;
 @define-color crust     #11111b;
 
@@ -23,21 +23,43 @@
 @define-color peach     #fab387;
 @define-color red       #f38ba8;
 
+
+/* ============================================================
+ * Global
+ * ============================================================ */
+
 * {
     all: unset;
     font-family: "JetBrainsMono Nerd Font";
     font-size: 14px;
+    color: @text;
 }
 
+
+/* ============================================================
+ * Waybar
+ * ============================================================ */
+
 window#waybar {
-    background-color: @base;
-    border-bottom: 1px solid @teal;
+    background: transparent;
+    border: none;
 }
+
+
+/* Give the whole bar a little breathing room */
+window#waybar > box {
+    padding: 4px 6px;
+}
+
+
+/* ============================================================
+ * Tooltips
+ * ============================================================ */
 
 tooltip {
     background-color: @mantle;
     border: 1px solid @surface0;
-    border-radius: 8px;
+    border-radius: 12px;
     padding: 6px 10px;
 }
 
@@ -45,25 +67,35 @@ tooltip label {
     color: @text;
 }
 
+
+/* ============================================================
+ * Menus
+ * ============================================================ */
+
 menu {
     background-color: @mantle;
     border: 1px solid @surface0;
-    border-radius: 8px;
+    border-radius: 12px;
     padding: 4px;
 }
 
 menu menuitem {
     padding: 6px 10px;
-    border-radius: 6px;
+    border-radius: 8px;
     color: @subtext1;
 }
 
 menu menuitem:hover {
     background-color: @surface1;
-    color: @subtext0;
+    color: @text;
 }
 
-/* ---------- shared module pill ---------- */
+
+/* ============================================================
+ * Shared pill styling
+ *
+ * Each module becomes its own floating rounded pill.
+ * ============================================================ */
 
 #workspaces,
 #clock,
@@ -72,64 +104,121 @@ menu menuitem:hover {
 #network,
 #cpu,
 #memory,
-#tray {
+#disk,
+#tray,
+#custom-airpods {
+    background-color: @surface0;
     color: @text;
-    padding: 4px 12px;
-    margin: 4px 3px;
-    border-radius: 10px;
+
+    margin: 3px 4px;
+    padding: 5px 13px;
+
+    border-radius: 999px;
 }
 
-/* ---------- workspaces ---------- */
+
+/* ============================================================
+ * Workspaces
+ * ============================================================ */
 
 #workspaces {
-    padding: 2px 6px;
+    padding: 3px 5px;
+    background-color: @surface0;
 }
 
 #workspaces button {
-    padding: 2px 8px;
-    margin: 2px;
-    border-radius: 8px;
     color: @subtext1;
-    font-size: 20px;
-    transition: all 0.2s ease-in-out;
+
+    padding: 4px 11px;
+    margin: 0 2px;
+
+    border-radius: 999px;
+
+    font-size: 14px;
+    font-weight: normal;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
 }
+
+
+/* Hover */
+
+#workspaces button:hover {
+    background-color: @surface1;
+    color: @text;
+}
+
+
+/* Active workspace */
+
+#workspaces button.active {
+    background-color: @mauve;
+    color: @crust;
+
+    font-weight: bold;
+}
+
+
+/* Empty workspace */
 
 #workspaces button.empty {
     color: @overlay0;
 }
 
-#workspaces button.active {
-    color: @mauve;
-    font-size: 22px;
-    font-weight: bold;
+
+/* Active + empty should still be visible */
+
+#workspaces button.active.empty {
+    background-color: @mauve;
+    color: @crust;
 }
+
+
+/* Urgent workspace */
 
 #workspaces button.urgent {
     background-color: @red;
     color: @crust;
+    font-weight: bold;
 }
 
-/* ---------- clock ---------- */
+
+/* ============================================================
+ * Clock
+ * ============================================================ */
 
 #clock {
     color: @blue;
     font-weight: bold;
 }
 
-/* ---------- pulseaudio ---------- */
+
+/* ============================================================
+ * PulseAudio
+ * ============================================================ */
 
 #pulseaudio {
     color: @green;
+}
+
+#pulseaudio:hover {
+    background-color: @surface1;
 }
 
 #pulseaudio.muted {
     color: @overlay0;
 }
 
-/* ---------- battery ---------- */
+
+/* ============================================================
+ * Battery
+ * ============================================================ */
 
 #battery {
     color: @green;
+    font-weight: bold;
 }
 
 #battery.charging {
@@ -144,7 +233,10 @@ menu menuitem:hover {
     color: @red;
 }
 
-/* ---------- network ---------- */
+
+/* ============================================================
+ * Network
+ * ============================================================ */
 
 #network {
     color: @peach;
@@ -154,20 +246,40 @@ menu menuitem:hover {
     color: @red;
 }
 
-/* ---------- cpu / memory ---------- */
+
+/* ============================================================
+ * CPU
+ * ============================================================ */
 
 #cpu {
     color: @mauve;
 }
 
+
+/* ============================================================
+ * Memory
+ * ============================================================ */
+
 #memory {
     color: @lavender;
 }
 
-/* ---------- tray ---------- */
+
+/* ============================================================
+ * Disk
+ * ============================================================ */
+
+#disk {
+    color: @teal;
+}
+
+
+/* ============================================================
+ * System Tray
+ * ============================================================ */
 
 #tray {
-    padding: 2px 10px;
+    padding: 5px 11px;
 }
 
 #tray > .passive {
@@ -176,13 +288,40 @@ menu menuitem:hover {
 
 #tray > .needs-attention {
     background-color: @red;
-    border-radius: 8px;
+    color: @crust;
+    border-radius: 999px;
 }
 
+
+/* ============================================================
+ * AirPods
+ * ============================================================ */
+
 #custom-airpods {
-  background-image: url("/home/sanjar/.config/waybar/airpods.png");
-  background-repeat: no-repeat;
-  background-position: left center;
-  background-size: 18px 18px; /* Adjust size to fit your bar height */
-  padding-left: 24px; /* Adjust based on icon size + desired gap */
+    background-image: url("/home/sanjar/.config/waybar/airpods.png");
+    background-repeat: no-repeat;
+    background-position: 12px center;
+    background-size: 18px 18px;
+
+    padding-left: 36px;
+    padding-right: 13px;
+
+    color: @text;
+}
+
+
+/* ============================================================
+ * Module hover
+ * ============================================================ */
+
+#clock:hover,
+#pulseaudio:hover,
+#battery:hover,
+#network:hover,
+#cpu:hover,
+#memory:hover,
+#disk:hover,
+#tray:hover,
+#custom-airpods:hover {
+    background-color: @surface1;
 }
