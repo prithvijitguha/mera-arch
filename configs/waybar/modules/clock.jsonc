@@ -1,6 +1,0 @@
-{
-  "clock": {
-    "timezone": "Asia/Calcutta",
-    "format": "<span size='11pt'>{:%I:%M %p    󰃱  %d %b %Y }</span>"
-  }
-}
