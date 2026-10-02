@@ -3,10 +3,10 @@
   "position": "top",
   "exclusive": true,
   "modules-left": [
-    "hyprland/workspaces",
+    "ext/workspaces"
   ],
   "modules-center": [
-    "hyprland/window"
+    "mango/window"
   ],
   "modules-right": [
     "group/expand",
@@ -19,31 +19,54 @@
     "clock"
   ],
   "reload_style_on_change": true,
-  "hyprland/window": {
-    "format": "{class}  {title}",
+  // ============================================================
+  // MangoWC window
+  // ============================================================
+  "mango/window": {
+    "format": "{}",
     "icon": false,
     "max-length": 50,
-    "separate-outputs": true,
     "tooltip": false
   },
-  "hyprland/workspaces": {
+  // ============================================================
+  // MangoWC workspaces / tags
+  //
+  // 1 = Programming
+  // 2 = Browser
+  // 3 = Gaming
+  // 4 = Media
+  // 5 = Communication
+  // 6 = Misc
+  // ============================================================
+  "ext/workspaces": {
     "format": "{icon}",
-    "tooltip": false,
-    "all-outputs": false,
-    "sort-by-number": true,
-    "disable-scroll": false,
-    "on-scroll-up": "hyprctl dispatch workspace +1",
-    "on-scroll-down": "hyprctl dispatch workspace -1",
-    "active-only": false,
-    "show-special": false,
+    "hide-empty": false,
+    "ignore-hidden": false,
+    "sort-by-id": true,
+    "on-click": "activate",
+    "on-click-right": "deactivate",
+    "format-icons": {
+      "1": "Programming",
+      "2": "Browser",
+      "3": "Gaming",
+      "4": "Media",
+      "5": "Communication",
+      "6": "Misc"
+    }
   },
+  // ============================================================
+  // System tray
+  // ============================================================
   "tray": {
     "format": "{icon}",
     "tooltip": true,
     "icon-size": 18,
     "spacing": 0
   },
-  "pipewire#source": {
+  // ============================================================
+  // Audio
+  // ============================================================
+  "pulseaudio#source": {
     "format": "{icon} {volume}%",
     "format-muted": "󰝟",
     "tooltip": true,
@@ -54,11 +77,14 @@
         "",
         "",
         ""
-      ],
+      ]
     },
     "scroll-step": 5,
     "on-click": "pavucontrol"
   },
+  // ============================================================
+  // Battery
+  // ============================================================
   "battery": {
     "interval": 60,
     "states": {
@@ -69,8 +95,8 @@
       "on-discharging-warning": "notify-send -u normal 'Low Battery'",
       "on-discharging-critical": "notify-send -u critical 'Very Low Battery'",
       "on-charging-100": "notify-send -u normal 'Battery Full!'",
-      "on-discharging": "notify-send -u normal 'Power Switch' Discharging",
-      "on-charging": "notify-send -u normal 'Power Switch' Charging'"
+      "on-discharging": "notify-send -u normal 'Power Switch' 'Discharging'",
+      "on-charging": "notify-send -u normal 'Power Switch' 'Charging'"
     },
     "format": "{icon} {capacity}%",
     "format-icons": [
@@ -87,20 +113,29 @@
     ],
     "max-length": 25
   },
+  // ============================================================
+  // Memory
+  // ============================================================
   "memory": {
     "format": "mem: {used:0.1f}G",
     "tooltip": true,
     "tooltip-format": "RAM: Used {used:0.1f}G / Free {total:0.1f}G",
     "interval": 4
   },
+  // ============================================================
+  // Disk
+  // ============================================================
   "disk": {
     "interval": 30,
     "unit": "GB",
     "format": "disk: {specific_used:0.2f}G",
     "path": "/",
     "tooltip": true,
-    "tooltip-format": "Root: Used {specific_used:0.2f}G / free {specific_free:0.2f}G"
+    "tooltip-format": "Root: Used {specific_used:0.2f}G / Free {specific_free:0.2f}G"
   },
+  // ============================================================
+  // Clock
+  // ============================================================
   "clock": {
     "format": "{:%H:%M}",
     "format-alt": "{:%A, %B %d, %Y (%R)} 󰃰 ",

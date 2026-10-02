@@ -100,6 +100,7 @@ menu menuitem:hover {
 
 #workspaces button.active {
     color: @mauve;
+    font-size: 22px;
     font-weight: bold;
 }
 
