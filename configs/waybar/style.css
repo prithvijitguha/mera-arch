@@ -254,9 +254,12 @@ menu menuitem:hover {
  * ============================================================ */
 
 #cpu {
+    background-color: @surface0;
     color: @mauve;
+    margin: 4px 4px;
+    padding: 5px 13px;
+    border-radius: 600px;
 }
-
 
 /* ============================================================
  * Memory
