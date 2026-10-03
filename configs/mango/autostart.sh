@@ -5,3 +5,5 @@ killall mako
 
 waybar >/dev/null 2>&1
 makoctl reload
+
+quickshell -c ~/.config/quickshell/dock &
