@@ -12,7 +12,7 @@
     "group/expand",
     "tray",
     "custom/airpods",
-    "pulseaudio#source",
+    "pulseaudio",
     "battery",
     "memory",
     "disk",
@@ -66,13 +66,14 @@
   // ============================================================
   // Audio
   // ============================================================
-  "pulseaudio#source": {
+  "pulseaudio": {
     "format": "{icon} {volume}%",
     "format-muted": "󰝟",
     "tooltip": true,
     "tooltip-format": "Volume: {volume}%",
     "format-icons": {
-      "headphone": "",
+      "headphone": "",
+      "speaker": "",
       "default": [
         "",
         "",
@@ -81,8 +82,7 @@
     },
     "scroll-step": 5,
     "on-click": "pavucontrol"
-  },
-  // ============================================================
+  }, // ============================================================
   // Battery
   // ============================================================
   "battery": {

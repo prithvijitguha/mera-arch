@@ -20,3 +20,8 @@ mako
 blueman
 tree
 power-profiles-daemon
+flatpak
+wl-clipboard 
+slurp 
+grim
+steam

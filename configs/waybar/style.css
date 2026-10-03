@@ -200,7 +200,11 @@ menu menuitem:hover {
  * ============================================================ */
 
 #pulseaudio {
+    background-color: @surface0;
     color: @green;
+    margin: 3px 4px;
+    padding: 5px 13px;
+    border-radius: 999px;
 }
 
 #pulseaudio:hover {
