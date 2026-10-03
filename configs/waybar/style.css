@@ -103,8 +103,7 @@ menu menuitem:hover {
 #pulseaudio,
 #network,
 #battery,
-#memory,
-#tray {
+#memory {
     background-color: @surface0;
     color: @text;
 
@@ -274,25 +273,6 @@ menu menuitem:hover {
 
 
 /* ============================================================
- * System Tray
- * ============================================================ */
-
-#tray {
-    padding: 5px 11px;
-}
-
-#tray > .passive {
-    -gtk-icon-effect: dim;
-}
-
-#tray > .needs-attention {
-    background-color: @red;
-    color: @crust;
-    border-radius: 999px;
-}
-
-
-/* ============================================================
  * Power
  * ============================================================ */
 
@@ -305,9 +285,9 @@ menu menuitem:hover {
     margin: 3px 4px;
     padding: 10px 10px;
 
-    border-radius: 999px;
+    border-radius: 600px;
 
-    font-size: 16px;
+    font-size: 20px;
     font-weight: bold;
 }
 
