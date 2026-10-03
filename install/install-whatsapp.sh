@@ -11,7 +11,7 @@ Comment=WhatsApp Messenger
 Exec=chromium --app="https://web.whatsapp.com" --name=WhatsApp --class=Whatsapp
 Terminal=false
 Type=Application
-Icon=/home/$USER/.local/share/meradeb/applications/icons/WhatsApp.png
+Icon=$HOME/.local/share/applications/icons/whatsapp.png
 Categories=GTK;
 MimeType=text/html;text/xml;application/xhtml_xml;
 StartupNotify=true

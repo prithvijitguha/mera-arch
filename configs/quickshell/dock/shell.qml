@@ -10,7 +10,7 @@ PanelWindow {
     anchors.left: true
     anchors.right: true
 
-    implicitHeight: 70
+    implicitHeight: 82
     color: "transparent"
 
     // ------------------------------------------------------------
@@ -30,8 +30,9 @@ PanelWindow {
                 try {
                     let data = JSON.parse(line)
 
-                    if (Array.isArray(data.clients))
+                    if (Array.isArray(data.clients)) {
                         dock.clients = data.clients
+                    }
                 } catch (e) {
                     // Ignore non-JSON output
                 }
@@ -76,7 +77,7 @@ PanelWindow {
             name: "WhatsApp",
             appid: "chrome-web.whatsapp.com__-Default",
             exec: "google-chrome",
-            icon: "whatsapp"
+            icon: ""
         },
 
         {
@@ -92,18 +93,22 @@ PanelWindow {
     // ------------------------------------------------------------
 
     function findClient(appid) {
-        return clients.find(c => c.appid === appid)
+        for (let i = 0; i < clients.length; ++i) {
+            if (clients[i].appid === appid)
+                return clients[i]
+        }
+
+        return null
     }
 
     function isRunning(appid) {
-        return findClient(appid) !== undefined
+        return findClient(appid) !== null
     }
 
     function launchOrFocus(app) {
         let client = findClient(app.appid)
 
-        if (client !== undefined) {
-            // Focus existing MangoWC client
+        if (client !== null) {
             Quickshell.execDetached([
                 "mmsg",
                 "dispatch",
@@ -111,7 +116,6 @@ PanelWindow {
                 "client," + client.id
             ])
         } else {
-            // Launch application
             Quickshell.execDetached([
                 "sh",
                 "-c",
@@ -121,62 +125,85 @@ PanelWindow {
     }
 
     // ------------------------------------------------------------
-    // Dock background
+    // Dock
     // ------------------------------------------------------------
 
     Rectangle {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
 
-        width: row.width + 24
-        height: 58
+        // Wider
+        width: row.width + 40
 
-        radius: 16
+        // Taller
+        height: 72
+
+        // More rounded
+        radius: 28
+
         color: "#202020ee"
 
         Row {
             id: row
 
             anchors.centerIn: parent
-            spacing: 8
+
+            spacing: 12
 
             Repeater {
                 model: dock.pinned
 
                 delegate: Item {
-                    width: 42
-                    height: 48
+                    width: 50
+                    height: 60
 
                     property bool isRunning:
                         dock.isRunning(modelData.appid)
 
+                    // ------------------------------------------------
                     // App icon
+                    // ------------------------------------------------
+
                     Image {
                         anchors.horizontalCenter: parent.horizontalCenter
                         anchors.top: parent.top
 
-                        width: 34
-                        height: 34
+                        width: 44
+                        height: 44
 
-                        source: "image://icon/" + modelData.icon
+                        source: modelData.name === "WhatsApp"
+                            ? "file://" + Quickshell.env("HOME") +
+                              "/.local/share/applications/icons/whatsapp.png"
+                            : "image://icon/" + modelData.icon
+
+                        sourceSize.width: 44
+                        sourceSize.height: 44
 
                         fillMode: Image.PreserveAspectFit
                         smooth: true
                     }
 
+                    // ------------------------------------------------
                     // Running indicator
+                    // ------------------------------------------------
+
                     Rectangle {
-                        visible: parent.parent.isRunning
+                        visible: dock.isRunning(modelData.appid)
 
                         anchors.horizontalCenter: parent.horizontalCenter
                         anchors.bottom: parent.bottom
 
-                        width: 6
-                        height: 6
-                        radius: 3
+                        width: 7
+                        height: 7
+
+                        radius: 3.5
 
                         color: "white"
                     }
+
+                    // ------------------------------------------------
+                    // Click
+                    // ------------------------------------------------
 
                     MouseArea {
                         anchors.fill: parent
