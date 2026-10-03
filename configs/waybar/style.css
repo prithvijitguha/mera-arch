@@ -1,5 +1,5 @@
 /* ============================================================
- * Catppuccin Mocha — Rounded Pill Waybar
+ * Catppuccin Mocha — GNOME-style Pill Waybar
  * ============================================================ */
 
 @define-color base      #1e1e2e;
@@ -30,7 +30,6 @@
 
 * {
     all: unset;
-    /* font-family: "JetBrainsMono Nerd Font";*/
     font-family: "Hack";
     font-size: 14px;
     color: @text;
@@ -46,71 +45,33 @@ window#waybar {
     border: none;
 }
 
-
-/* Give the whole bar a little breathing room */
 window#waybar > box {
-    padding: 4px 6px;
+    padding: 5px 8px;
 }
+
 
 
 /* ============================================================
- * Tooltips
+ * Shared GNOME Pill Styling
  * ============================================================ */
 
-tooltip {
-    background-color: @mantle;
-    border: 1px solid @surface0;
-    border-radius: 12px;
-    padding: 6px 10px;
-}
-
-tooltip label {
-    color: @text;
-}
-
-
-/* ============================================================
- * Menus
- * ============================================================ */
-
-menu {
-    background-color: @mantle;
-    border: 1px solid @surface0;
-    border-radius: 12px;
-    padding: 4px;
-}
-
-menu menuitem {
-    padding: 6px 10px;
-    border-radius: 8px;
-    color: @subtext1;
-}
-
-menu menuitem:hover {
-    background-color: @surface1;
-    color: @text;
-}
-
-
-/* ============================================================
- * Shared pill styling
- *
- * Each module becomes its own floating rounded pill.
- * ============================================================ */
-
-#workspaces,
 #clock,
 #pulseaudio,
 #network,
-#battery,
-#memory {
+#cpu,
+#memory,
+#battery {
     background-color: @surface0;
     color: @text;
 
-    margin: 3px 4px;
-    padding: 5px 13px;
+    margin: 3px 3px;
+    padding: 5px 12px;
 
-    border-radius: 600px;
+    border-radius: 999px;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
 }
 
 
@@ -119,9 +80,13 @@ menu menuitem:hover {
  * ============================================================ */
 
 #workspaces {
-    padding: 3px 5px;
     background-color: @surface0;
+
+    margin: 3px 3px;
+    padding: 3px 5px;
+
     border-radius: 10px;
+    border: 100px;
 }
 
 #workspaces button {
@@ -131,6 +96,7 @@ menu menuitem:hover {
     margin: 0 2px;
 
     border-radius: 10px;
+    border: 100px;
 
     font-size: 14px;
     font-weight: normal;
@@ -156,9 +122,34 @@ menu menuitem:hover {
     color: @crust;
 
     font-weight: bold;
+
+    border: 100px;
 }
 
 
+/* Empty workspace */
+
+#workspaces button.empty {
+    color: @overlay0;
+}
+
+
+/* Active + empty */
+
+#workspaces button.active.empty {
+    background-color: @mauve;
+    color: @crust;
+}
+
+
+/* Urgent workspace */
+
+#workspaces button.urgent {
+    background-color: @red;
+    color: @crust;
+
+    font-weight: bold;
+}
 
 
 /* ============================================================
@@ -168,6 +159,13 @@ menu menuitem:hover {
 #clock {
     color: @blue;
     font-weight: bold;
+
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+#clock:hover {
+    background-color: @surface1;
 }
 
 
@@ -176,13 +174,12 @@ menu menuitem:hover {
  * ============================================================ */
 
 #pulseaudio {
-    background-color: @surface0;
     color: @green;
-    margin: 3px 4px;
-    padding: 5px 13px;
-    border-radius: 600px;
 }
 
+#pulseaudio:hover {
+    background-color: @surface1;
+}
 
 #pulseaudio.muted {
     color: @overlay0;
@@ -190,7 +187,50 @@ menu menuitem:hover {
 
 
 /* ============================================================
- * Battery
+ * Network
+ * ============================================================ */
+
+#network {
+    color: @blue;
+}
+
+#network:hover {
+    background-color: @surface1;
+}
+
+#network.disconnected {
+    color: @red;
+}
+
+
+/* ============================================================
+ * CPU
+ * ============================================================ */
+
+#cpu {
+    color: @mauve;
+}
+
+#cpu:hover {
+    background-color: @surface1;
+}
+
+
+/* ============================================================
+ * Memory
+ * ============================================================ */
+
+#memory {
+    color: @lavender;
+}
+
+#memory:hover {
+    background-color: @surface1;
+}
+
+
+/* ============================================================
+ * Battery / Power
  * ============================================================ */
 
 #battery {
@@ -212,47 +252,7 @@ menu menuitem:hover {
 
 
 /* ============================================================
- * Network
- * ============================================================ */
-
-#network {
-    background-color: @surface0;
-    color: @blue;
-    margin: 4px 4px;
-    padding: 5px 13px;
-    border-radius: 600px;
-}
-
-#network.disconnected {
-    color: @red;
-}
-
-
-/* ============================================================
- * CPU
- * ============================================================ */
-
-#cpu {
-    background-color: @surface0;
-    color: @mauve;
-    margin: 4px 4px;
-    padding: 5px 13px;
-    border-radius: 600px;
-}
-
-/* ============================================================
- * Memory
- * ============================================================ */
-
-#memory {
-    color: @lavender;
-}
-
-
-
-
-/* ============================================================
- * Power
+ * Power Button
  * ============================================================ */
 
 #custom-power {
@@ -261,16 +261,43 @@ menu menuitem:hover {
 
     min-width: 18px;
 
-    margin: 3px 4px;
-    padding: 10px 10px;
+    margin: 3px 3px;
+    padding: 5px 12px;
 
-    border-radius: 600px;
+    border-radius: 999px;
 
-    font-size: 20px;
+    font-size: 16px;
     font-weight: bold;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
 }
 
 #custom-power:hover {
     background-color: @red;
     color: @crust;
+}
+
+
+/* ============================================================
+ * Menus
+ * ============================================================ */
+
+menu {
+    background-color: @mantle;
+    border: 1px solid @surface0;
+    border-radius: 12px;
+    padding: 4px;
+}
+
+menu menuitem {
+    padding: 6px 10px;
+    border-radius: 8px;
+    color: @subtext1;
+}
+
+menu menuitem:hover {
+    background-color: @surface1;
+    color: @text;
 }
