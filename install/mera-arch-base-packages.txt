@@ -26,3 +26,5 @@ slurp
 grim
 steam
 iwd
+ttf-liberation
+ttf-hack
