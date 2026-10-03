@@ -11,7 +11,6 @@
   "modules-right": [
     "group/expand",
     "tray",
-    "custom/airpods",
     "pulseaudio",
     "battery",
     "memory",
@@ -117,21 +116,8 @@
   // Memory
   // ============================================================
   "memory": {
-    "format": "mem: {used:0.1f}G",
-    "tooltip": true,
-    "tooltip-format": "RAM: Used {used:0.1f}G / Free {total:0.1f}G",
+    "format": "{used:0.1f}G/{total:0.1f}G ",
     "interval": 4
-  },
-  // ============================================================
-  // Disk
-  // ============================================================
-  "disk": {
-    "interval": 30,
-    "unit": "GB",
-    "format": "disk: {specific_used:0.2f}G",
-    "path": "/",
-    "tooltip": true,
-    "tooltip-format": "Root: Used {specific_used:0.2f}G / Free {specific_free:0.2f}G"
   },
   // ============================================================
   // Clock

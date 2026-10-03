@@ -105,15 +105,14 @@ menu menuitem:hover {
 #cpu,
 #memory,
 #disk,
-#tray,
-#custom-airpods {
+#tray {
     background-color: @surface0;
     color: @text;
 
     margin: 3px 4px;
     padding: 5px 13px;
 
-    border-radius: 999px;
+    border-radius: 600px;
 }
 
 
@@ -296,39 +295,6 @@ menu menuitem:hover {
     border-radius: 999px;
 }
 
-
-/* ============================================================
- * AirPods
- * ============================================================ */
-
-#custom-airpods {
-    background-image: url("/home/sanjar/.config/waybar/airpods.png");
-    background-repeat: no-repeat;
-    background-position: 12px center;
-    background-size: 18px 18px;
-
-    padding-left: 36px;
-    padding-right: 13px;
-
-    color: @text;
-}
-
-
-/* ============================================================
- * Module hover
- * ============================================================ */
-
-#clock:hover,
-#pulseaudio:hover,
-#battery:hover,
-#network:hover,
-#cpu:hover,
-#memory:hover,
-#disk:hover,
-#tray:hover,
-#custom-airpods:hover {
-    background-color: @surface1;
-}
 
 /* ============================================================
  * Power
