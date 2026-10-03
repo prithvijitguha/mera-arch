@@ -11,8 +11,9 @@
   "modules-right": [
     "network",
     "pulseaudio",
-    "battery",
+    "cpu",
     "memory",
+    "battery",
     "custom/power"
   ],
   "reload_style_on_change": true,
@@ -94,7 +95,12 @@
     },
     "scroll-step": 5,
     "on-click": "pavucontrol"
-  }, // ============================================================
+  },
+  "cpu": {
+    "interval": 2,
+    "format": " {load}%"
+  },
+  // ============================================================
   // Battery
   // ============================================================
   "battery": {
