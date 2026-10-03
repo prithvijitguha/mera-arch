@@ -121,6 +121,7 @@ menu menuitem:hover {
 #workspaces {
     padding: 3px 5px;
     background-color: @surface0;
+    border-radius: 10px;
 }
 
 #workspaces button {
@@ -129,7 +130,7 @@ menu menuitem:hover {
     padding: 4px 11px;
     margin: 0 2px;
 
-    border-radius: 600px;
+    border-radius: 10px;
 
     font-size: 14px;
     font-weight: normal;
@@ -158,28 +159,6 @@ menu menuitem:hover {
 }
 
 
-/* Empty workspace */
-
-#workspaces button.empty {
-    color: @overlay0;
-}
-
-
-/* Active + empty should still be visible */
-
-#workspaces button.active.empty {
-    background-color: @mauve;
-    color: @crust;
-}
-
-
-/* Urgent workspace */
-
-#workspaces button.urgent {
-    background-color: @red;
-    color: @crust;
-    font-weight: bold;
-}
 
 
 /* ============================================================
