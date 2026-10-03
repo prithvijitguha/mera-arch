@@ -164,10 +164,6 @@ window#waybar > box {
     padding-right: 15px;
 }
 
-#clock:hover {
-    background-color: @surface1;
-}
-
 
 /* ============================================================
  * PulseAudio

@@ -19,7 +19,6 @@
   "reload_style_on_change": true,
   "clock": {
     "format": " {:%I:%M %p  %a  %d %b %Y} ",
-    "format-alt": "{} ",
     "tooltip-format": "{:%Y}",
     "calendar": {
       "mode": "year",

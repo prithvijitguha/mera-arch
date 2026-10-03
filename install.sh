@@ -24,6 +24,7 @@ cp -rT ~/.local/share/mera-arch/configs/wofi ~/.config/wofi
 cp -rT ~/.local/share/mera-arch/configs/waybar ~/.config/waybar
 cp -rT ~/.local/share/mera-arch/configs/mango ~/.config/mango
 cp -rT ~/.local/share/mera-arch/configs/mako ~/.config/mako
+cp -rT ~/.local/share/mera-arch/configs/swaylock ~/.config/swaylock
 
 # Backgrounds
 cp -rT ~/.local/share/mera-arch/assets/backgrounds ~/.local/share/backgrounds

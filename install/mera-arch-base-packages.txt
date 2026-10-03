@@ -31,3 +31,6 @@ ttf-hack
 signal-desktop
 chromium
 swaybg
+swaylock 
+swayidle
+imagemagick
