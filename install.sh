@@ -24,6 +24,7 @@ cp -rT ~/.local/share/mera-arch/configs/wofi ~/.config/wofi
 cp -rT ~/.local/share/mera-arch/configs/waybar ~/.config/waybar
 cp -rT ~/.local/share/mera-arch/configs/mango ~/.config/mango
 cp -rT ~/.local/share/mera-arch/configs/mako ~/.config/mako
+cp -rT configs/quickshell/dock/shell.qml ~/.config/quickshell/dock/shell.qml
 
 # Setup files
 source ~/.local/share/mera-arch/setup/setup-gnome-hotkeys.sh
