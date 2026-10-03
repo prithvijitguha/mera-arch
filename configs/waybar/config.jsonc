@@ -34,16 +34,6 @@
       }
     }
   },
-  // ============================================================
-  // MangoWC workspaces / tags
-  //
-  // 1 = Programming
-  // 2 = Browser
-  // 3 = Gaming
-  // 4 = Media
-  // 5 = Communication
-  // 6 = Misc
-  // ============================================================
   "ext/workspaces": {
     "format": "{icon}",
     "hide-empty": false,
