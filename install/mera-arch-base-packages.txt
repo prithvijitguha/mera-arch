@@ -25,3 +25,4 @@ wl-clipboard
 slurp 
 grim
 steam
+iwd

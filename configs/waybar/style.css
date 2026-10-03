@@ -100,11 +100,9 @@ menu menuitem:hover {
 #workspaces,
 #clock,
 #pulseaudio,
-#battery,
 #network,
-#cpu,
+#battery,
 #memory,
-#disk,
 #tray {
     background-color: @surface0;
     color: @text;
@@ -131,7 +129,7 @@ menu menuitem:hover {
     padding: 4px 11px;
     margin: 0 2px;
 
-    border-radius: 999px;
+    border-radius: 600px;
 
     font-size: 14px;
     font-weight: normal;
@@ -203,12 +201,9 @@ menu menuitem:hover {
     color: @green;
     margin: 3px 4px;
     padding: 5px 13px;
-    border-radius: 999px;
+    border-radius: 600px;
 }
 
-#pulseaudio:hover {
-    background-color: @surface1;
-}
 
 #pulseaudio.muted {
     color: @overlay0;
@@ -242,7 +237,11 @@ menu menuitem:hover {
  * ============================================================ */
 
 #network {
-    color: @peach;
+    background-color: @surface0;
+    color: @blue;
+    margin: 4px 4px;
+    padding: 5px 13px;
+    border-radius: 600px;
 }
 
 #network.disconnected {
@@ -268,13 +267,6 @@ menu menuitem:hover {
 }
 
 
-/* ============================================================
- * Disk
- * ============================================================ */
-
-#disk {
-    color: @teal;
-}
 
 
 /* ============================================================
