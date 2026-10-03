@@ -6,8 +6,7 @@
     "ext/workspaces"
   ],
   "modules-center": [
-    "clock",
-    "mango/window"
+    "clock"
   ],
   "modules-right": [
     "network",
@@ -18,18 +17,9 @@
     "custom/power"
   ],
   "reload_style_on_change": true,
-  // ============================================================
-  // MangoWC window
-  // ============================================================
-  "mango/window": {
-    "format": "{}",
-    "icon": false,
-    "max-length": 50,
-    "tooltip": false
-  },
   "clock": {
-    "format": "{:%H:%M} ",
-    "format-alt": "{:%A, %b %d} ",
+    "format": " {:%H:%M    %a  %d %b %Y} ",
+    "format-alt": "{} ",
     "tooltip-format": "{:%Y}",
     "calendar": {
       "mode": "year",
