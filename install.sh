@@ -25,8 +25,7 @@ cp -rT ~/.local/share/mera-arch/configs/waybar ~/.config/waybar
 cp -rT ~/.local/share/mera-arch/configs/mango ~/.config/mango
 cp -rT ~/.local/share/mera-arch/configs/mako ~/.config/mako
 
-# Setup files
-source ~/.local/share/mera-arch/setup/setup-gnome-hotkeys.sh
-
+# Backgrounds
+cp -rT ~/.local/share/mera-arch/assets/backgrounds ~/.local/share/backgrounds
 # Change default shell to zsh
 chsh -s $(which zsh)

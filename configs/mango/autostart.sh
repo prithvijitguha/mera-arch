@@ -6,5 +6,4 @@ killall mako
 waybar >/dev/null 2>&1
 makoctl reload
 
-quickshell kill -p ~/.config/quickshell/dock
-quickshell -c ~/.config/quickshell/dock &
+swaybg -i ~/.local/share/backgrounds/1-tree-tops.webp >/dev/null 2>&1 &

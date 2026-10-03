@@ -30,3 +30,4 @@ ttf-liberation
 ttf-hack
 signal-desktop
 chromium
+swaybg
