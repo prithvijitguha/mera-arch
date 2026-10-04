@@ -28,5 +28,12 @@ cp -rT ~/.local/share/mera-arch/configs/swaylock ~/.config/swaylock
 
 # Backgrounds
 cp -rT ~/.local/share/mera-arch/assets/backgrounds ~/.local/share/backgrounds
+
+# Matugen setup
+mkdir -p ~/.config/matugen/templates
+mkdir -p ~/.config/matugen/generated
+
+cp configs/matugen/config.toml ~/.config/matugen/config.toml
+
 # Change default shell to zsh
 chsh -s $(which zsh)
