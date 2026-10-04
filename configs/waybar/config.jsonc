@@ -32,7 +32,8 @@
         "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
         "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
       }
-    }
+    },
+    "on-click": "gnome-calendar",
   },
   "ext/workspaces": {
     "format": "{icon}",
@@ -128,7 +129,7 @@
     "interval": 4
   },
   // ============================================================
-  // Clock
+  // Power
   // ============================================================
   "custom/power": {
     "format": "⏻",

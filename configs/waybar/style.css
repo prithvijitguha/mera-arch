@@ -144,7 +144,15 @@ window#waybar > box {
     padding-right: 15px;
 }
 
+#clock:hover {
+    color: @primary;
+    font-weight: bold;
 
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: @surface_container_high;
+
+}
 /* ============================================================
  * PulseAudio
  * ============================================================ */
