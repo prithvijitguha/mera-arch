@@ -32,8 +32,10 @@ cp -rT ~/.local/share/mera-arch/assets/backgrounds ~/.local/share/backgrounds
 # Matugen setup
 mkdir -p ~/.config/matugen/templates
 mkdir -p ~/.config/matugen/generated
+mkdir -p ~/.config/ghostty/themes
 
-cp configs/matugen/config.toml ~/.config/matugen/config.toml
+cp -rT ~/.local/share/mera-arch/configs/matugen/config.toml ~/.config/matugen/config.toml
+cp -rT ~/.local/share/mera-arch/configs/matugen/templates ~/.config/matugen/templates
 
 # Change default shell to zsh
 chsh -s $(which zsh)

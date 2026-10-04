@@ -1,14 +1,14 @@
+[config]
+reload_apps = true
+set = true
+
+
 [templates.waybar]
 input_path = '~/.config/matugen/templates/waybar.css'
 output_path = '~/.config/waybar/colors.css'
-post_hook = 'pkill -SIGUSR2 waybar'
+post_hook = 'pkill -SIGUSR2 waybar || true'
+
 
 [templates.ghostty]
 input_path = '~/.config/matugen/templates/ghostty'
 output_path = '~/.config/ghostty/themes/Matugen'
-post_hook = 'pkill -SIGUSR2 ghostty'
-
-[templates.tmux]
-input_path = '~/.config/matugen/templates/tmux.conf'
-output_path = '~/.config/tmux/generated.conf'
-post_hook = 'tmux source-file ~/.config/tmux/generated.conf'
