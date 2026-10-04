@@ -34,3 +34,4 @@ swaybg
 swaylock 
 swayidle
 imagemagick
+matugen
