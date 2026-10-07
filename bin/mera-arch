@@ -1,97 +1,332 @@
 #!/usr/bin/env python3
 
-import os
 import subprocess
-import sys
 from pathlib import Path
 
 import pyfiglet
 
-# Directory where this Python script is located
+from textual.app import App, ComposeResult
+from textual.containers import Container, VerticalScroll
+from textual.screen import Screen
+from textual.widgets import (
+    DataTable,
+    Footer,
+    Header,
+    Label,
+    ListItem,
+    ListView,
+    Static,
+)
+
+
 BASE_DIR = Path(__file__).resolve().parent
 
-AUTOSTART_SCRIPT = BASE_DIR / "autostart.sh"
-KEYBINDS_SCRIPT = BASE_DIR / "show_keybinds.sh"
+BACKGROUND_DIR = Path.home() / ".local/share/backgrounds"
+MANGO_CONFIG = Path.home() / ".config/mango/config.conf"
 
 
-def clear_screen():
-    os.system("clear")
+IMAGE_EXTENSIONS = {
+    ".png",
+    ".jpg",
+    ".jpeg",
+    ".webp",
+    ".gif",
+}
 
 
-def print_banner():
-    ascii_banner = pyfiglet.figlet_format("Mera-Arch", font="ansi_shadow")
-    print(ascii_banner)
+def parse_keybinds(config_file: Path):
+    """Parse Mango keyboard, mouse, axis and gesture bindings."""
+
+    bindings = []
+
+    if not config_file.exists():
+        return bindings
+
+    for line in config_file.read_text().splitlines():
+        line = line.strip()
+
+        if not line or line.startswith("#"):
+            continue
+
+        if line.startswith("bind="):
+            parts = line[5:].split(",", 3)
+
+            if len(parts) >= 3:
+                modifier = parts[0]
+                key = parts[1]
+                action = parts[2]
+
+                if len(parts) == 4:
+                    action = f"{action} {parts[3]}"
+
+                bindings.append(
+                    (
+                        "Keyboard",
+                        format_key(modifier, key),
+                        action,
+                    )
+                )
+
+        elif line.startswith("mousebind="):
+            parts = line[10:].split(",", 3)
+
+            if len(parts) >= 3:
+                modifier = parts[0]
+                button = parts[1]
+                action = parts[2]
+
+                if len(parts) == 4:
+                    action = f"{action} {parts[3]}"
+
+                bindings.append(
+                    (
+                        "Mouse",
+                        format_key(modifier, button),
+                        action,
+                    )
+                )
+
+        elif line.startswith("axisbind="):
+            parts = line[9:].split(",", 2)
+
+            if len(parts) >= 3:
+                modifier = parts[0]
+                direction = parts[1]
+                action = parts[2]
+
+                bindings.append(
+                    (
+                        "Axis",
+                        format_key(modifier, direction),
+                        action,
+                    )
+                )
+
+        elif line.startswith("gesturebind="):
+            parts = line[12:].split(",", 3)
+
+            if len(parts) >= 4:
+                modifier = parts[0]
+                direction = parts[1]
+                fingers = parts[2]
+                action = parts[3]
+
+                bindings.append(
+                    (
+                        "Gesture",
+                        format_key(
+                            modifier,
+                            f"{direction} ({fingers} fingers)",
+                        ),
+                        action,
+                    )
+                )
+
+    return bindings
 
 
-def pause():
-    input("\nPress Enter to continue...")
+def format_key(modifier: str, key: str) -> str:
+    """Make Mango key syntax easier to read."""
+
+    if modifier.lower() in ("none", ""):
+        return key
+
+    modifier = modifier.replace("+", " + ")
+
+    return f"{modifier} + {key}"
 
 
-def run_script(script):
-    """Run a shell script located next to this Python program."""
+def get_wallpapers():
+    """Return all supported wallpaper files."""
 
-    subprocess.run(
-        ["bash", str(script)],
-        check=False,
+    return sorted(
+        [
+            path
+            for path in BACKGROUND_DIR.iterdir()
+            if path.is_file() and path.suffix.lower() in IMAGE_EXTENSIONS
+        ],
+        key=lambda path: path.name.lower(),
     )
 
 
-def wallpaper_menu():
-    while True:
-        clear_screen()
-        print_banner()
+def set_wallpaper(image: Path):
+    """Set wallpaper using swaybg and generate colors with matugen."""
 
-        print("Wallpaper")
-        print("────────────")
-        print("1. Choose wallpaper")
-        print("2. Back")
+    # Stop existing swaybg process.
+    subprocess.run(
+        ["pkill", "-x", "swaybg"],
+        check=False,
+    )
 
-        choice = input("\nSelect an option: ").strip()
+    # Start the new wallpaper.
+    subprocess.Popen(
+        [
+            "swaybg",
+            "-i",
+            str(image),
+        ],
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+    )
 
-        if choice == "1":
-            run_script(AUTOSTART_SCRIPT)
-            pause()
+    # Generate matugen colors.
+    subprocess.Popen(
+        [
+            "matugen",
+            "image",
+            str(image),
+            "--prefer",
+            "darkness",
+        ],
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+    )
 
-        elif choice == "2":
-            return
 
-        else:
-            print("\nInvalid option.")
-            pause()
+class MainScreen(Screen):
+    """Main application menu."""
+
+    def compose(self) -> ComposeResult:
+        with Container(id="main-container"):
+            yield Static(
+                pyfiglet.figlet_format(
+                    "Mera-Arch",
+                    font="small",
+                ),
+                id="banner",
+            )
+
+            yield Label(
+                "Main Menu",
+                id="title",
+            )
+
+            yield ListView(
+                ListItem(Label("Change Wallpaper")),
+                ListItem(Label("Keybindings")),
+                ListItem(Label("Exit")),
+                id="main-menu",
+            )
 
 
-def keybindings_menu():
-    clear_screen()
-    print_banner()
+class WallpaperScreen(Screen):
+    """Wallpaper selection screen."""
 
-    print("Keybindings")
-    print("────────────")
+    def compose(self) -> ComposeResult:
+        wallpapers = get_wallpapers()
 
-    run_script(KEYBINDS_SCRIPT)
+        with Container(id="main-container"):
+            yield Static(
+                pyfiglet.figlet_format(
+                    "Wallpaper",
+                    font="small",
+                ),
+                id="banner",
+            )
 
-    pause()
+            yield Label(
+                "Choose Wallpaper",
+                id="title",
+            )
+
+            yield ListView(
+                *[ListItem(Label(wallpaper.name)) for wallpaper in wallpapers],
+                ListItem(Label("Back")),
+                id="wallpaper-menu",
+            )
+
+
+class KeybindingsScreen(Screen):
+    """Display Mango keybindings."""
+
+    def compose(self) -> ComposeResult:
+        bindings = parse_keybinds(MANGO_CONFIG)
+
+        with Container(id="keybind-container"):
+            yield Label(
+                "Keybindings",
+                id="keybind-title",
+            )
+
+            if not bindings:
+                yield Static(
+                    f"Could not find Mango config:\n\n{MANGO_CONFIG}",
+                    id="error",
+                )
+                return
+
+            with VerticalScroll(id="keybind-scroll"):
+                table = DataTable(
+                    cursor_type="row",
+                    zebra_stripes=True,
+                    id="keybind-table",
+                )
+
+                table.add_columns(
+                    "Type",
+                    "Key",
+                    "Action",
+                )
+
+                for binding_type, key, action in bindings:
+                    table.add_row(
+                        binding_type,
+                        key,
+                        action,
+                    )
+
+                yield table
+
+
+class MeraArch(App):
+    """Mera-Arch Textual application."""
+
+    TITLE = "Mera-Arch"
+
+    CSS_PATH = "style.css"
+
+    def on_mount(self) -> None:
+        self.push_screen(MainScreen())
+
+    def on_list_view_selected(
+        self,
+        event: ListView.Selected,
+    ) -> None:
+
+        list_view = event.list_view
+
+        if list_view.id == "main-menu":
+            if event.index == 0:
+                self.push_screen(WallpaperScreen())
+
+            elif event.index == 1:
+                self.push_screen(KeybindingsScreen())
+
+            elif event.index == 2:
+                self.exit()
+
+        elif list_view.id == "wallpaper-menu":
+            wallpapers = get_wallpapers()
+
+            # Last item is always Back.
+            if event.index == len(wallpapers):
+                self.pop_screen()
+                return
+
+            selected_wallpaper = wallpapers[event.index]
+
+            set_wallpaper(selected_wallpaper)
+
+            # Return to the main menu after selecting.
+            self.pop_screen()
+
+    def on_key(self, event) -> None:
+        """Escape goes back."""
+
+        if event.key == "escape":
+            if len(self.screen_stack) > 1:
+                self.pop_screen()
 
 
 if __name__ == "__main__":
-    while True:
-        clear_screen()
-        print_banner()
-
-        print("Main Menu")
-        print("────────────")
-        print("1. Change Wallpaper")
-        print("2. Keybindings")
-        print("3. Exit")
-
-        choice = input("\nSelect an option: ").strip()
-
-        if choice == "1":
-            wallpaper_menu()
-
-        elif choice == "2":
-            keybindings_menu()
-
-        elif choice == "3":
-            clear_screen()
-            print("Exiting")
-            sys
+    MeraArch().run()

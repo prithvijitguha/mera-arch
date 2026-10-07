@@ -1,0 +1,94 @@
+Screen {
+    align: center middle;
+}
+
+Header {
+    background: transparent;
+}
+
+Footer {
+    background: transparent;
+}
+
+
+/* Main menus */
+
+#main-container {
+    width: 64;
+    height: auto;
+    max-height: 90%;
+    border: round green;
+    padding: 1 2;
+}
+
+#banner {
+    width: 100%;
+    height: auto;
+    content-align: center middle;
+    text-align: center;
+    color: cyan;
+    margin-bottom: 1;
+}
+
+#title {
+    width: 100%;
+    text-align: center;
+    content-align: center middle;
+    margin-bottom: 1;
+}
+
+
+/* Scrollable gum-style menus */
+
+#main-menu,
+#wallpaper-menu {
+    width: 100%;
+    height: 1fr;
+    max-height: 18;
+    border: round $accent;
+}
+
+ListItem {
+    height: 1;
+    padding: 0 1;
+}
+
+ListItem.--highlight {
+    background: $accent;
+    color: $text;
+}
+
+
+/* Keybindings */
+
+#keybind-container {
+    width: 90%;
+    height: 90%;
+    border: round green;
+    padding: 1 2;
+}
+
+#keybind-title {
+    width: 100%;
+    height: 2;
+    text-align: center;
+    content-align: center middle;
+    color: cyan;
+}
+
+#keybind-scroll {
+    width: 100%;
+    height: 1fr;
+}
+
+#keybind-table {
+    width: 100%;
+    height: auto;
+}
+
+#error {
+    width: 100%;
+    height: auto;
+    padding: 2;
+    color: red;
+}
