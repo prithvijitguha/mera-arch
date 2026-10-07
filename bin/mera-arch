@@ -19,8 +19,8 @@ def clear_screen():
 
 
 def print_banner():
-    banner = pyfiglet.figlet_format("Mera Arch", font="slant")
-    print(banner)
+    ascii_banner = pyfiglet.figlet_format("Mera-Arch", font="ansi_shadow")
+    print(ascii_banner)
 
 
 def pause():
@@ -31,9 +31,9 @@ def run_script(script):
     """Run a shell script located next to this Python program."""
 
     subprocess.run(
-            ["bash", str(script)],
-            check=False,
-        )
+        ["bash", str(script)],
+        check=False,
+    )
 
 
 def wallpaper_menu():
@@ -72,7 +72,7 @@ def keybindings_menu():
     pause()
 
 
-def main_menu():
+if __name__ == "__main__":
     while True:
         clear_screen()
         print_banner()

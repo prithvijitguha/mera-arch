@@ -35,3 +35,7 @@ swaylock
 swayidle
 imagemagick
 matugen
+python-pyfiglet
+python-textual
+btop
+
