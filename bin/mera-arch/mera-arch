@@ -1,0 +1,222 @@
+#!/usr/bin/python3
+
+from __future__ import annotations
+
+import asyncio
+import os
+from pathlib import Path
+
+import pyfiglet
+from textual.app import App, ComposeResult
+from textual.containers import Container
+from textual.widgets import Footer, Label, ListItem, ListView, Static
+
+
+BACKGROUND_DIR = Path("~/.local/share/backgrounds").expanduser()
+WALLPAPER_SCRIPT = Path("~/.config/mango/change-wallpaper.sh").expanduser()
+CONFIG = Path(
+    os.environ.get("MANGO_CONFIG", "~/.config/mango/config.conf")
+).expanduser()
+
+IMAGE_EXTENSIONS = {".webp", ".jpeg", ".jpg", ".png"}
+BINDING_TYPES = {
+    "bind": "Keyboard",
+    "mousebind": "Mouse",
+    "axisbind": "Scroll",
+    "gesturebind": "Gesture",
+}
+
+
+class MeraArchMenu(App[None]):
+    TITLE = "mera-arch"
+    SUB_TITLE = "System menu"
+    CSS_PATH = "./style.tcss"
+
+    BINDINGS = [
+        ("j", "move_down", "Down"),
+        ("k", "move_up", "Up"),
+        ("h", "go_back", "Back"),
+        ("l", "select_current", "Select"),
+        ("down", "move_down", "Down"),
+        ("up", "move_up", "Up"),
+        ("left", "go_back", "Back"),
+        ("right", "select_current", "Select"),
+        ("escape", "go_back", "Back"),
+        ("q", "quit", "Quit"),
+    ]
+
+    def __init__(self) -> None:
+        super().__init__()
+        self.page = "main"
+        self.wallpapers: list[Path] = []
+        self.bindings: list[dict[str, str]] = []
+
+    def compose(self) -> ComposeResult:
+        yield Container(
+            Static(
+                pyfiglet.figlet_format("mera-arch", font="ansi_shadow"), id="banner"
+            ),
+            Label("Choose an option", id="heading"),
+            ListView(id="options"),
+            Static(
+                "hjkl / arrows: navigate • Enter/l: select • Esc/h: back • q: quit",
+                id="status",
+            ),
+            id="main",
+        )
+        yield Footer()
+
+    def on_mount(self) -> None:
+        self.show_main_menu()
+
+    def set_status(self, message: str) -> None:
+        self.query_one("#status", Static).update(message)
+
+    def set_heading(self, message: str) -> None:
+        self.query_one("#heading", Label).update(message)
+
+    def clear_options(self) -> ListView:
+        listing = self.query_one("#options", ListView)
+        listing.clear()
+        return listing
+
+    def add_item(self, listing: ListView, text: str) -> None:
+        listing.append(ListItem(Label(text)))
+
+    def show_main_menu(self) -> None:
+        self.page = "main"
+        self.set_heading("Choose an option")
+        listing = self.clear_options()
+        self.add_item(listing, "Wallpaper")
+        self.add_item(listing, "Hotkeys")
+        self.set_status("Select Wallpaper or Hotkeys.")
+        listing.focus()
+
+    def show_wallpapers(self) -> None:
+        self.page = "wallpapers"
+        self.set_heading("Choose a wallpaper")
+
+        self.wallpapers = sorted(
+            (
+                path
+                for path in BACKGROUND_DIR.iterdir()
+                if path.is_file() and path.suffix.lower() in IMAGE_EXTENSIONS
+            ),
+            key=lambda path: path.name.casefold(),
+        )
+
+        listing = self.clear_options()
+        for wallpaper in self.wallpapers:
+            self.add_item(listing, wallpaper.name)
+        self.add_item(listing, "← Back")
+
+        self.set_status(f"{len(self.wallpapers)} wallpaper(s) available.")
+        listing.focus()
+
+    def load_bindings(self) -> list[dict[str, str]]:
+        bindings = []
+
+        for raw_line in CONFIG.read_text(encoding="utf-8").splitlines():
+            line = raw_line.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+
+            directive, value = line.split("=", 1)
+            directive = directive.strip().lower()
+            if directive not in BINDING_TYPES:
+                continue
+
+            parts = [part.strip() for part in value.split(",")]
+            if directive == "gesturebind":
+                modifiers, direction, fingers, action, *args = parts
+                shortcut = f"{direction} ({fingers} fingers)"
+            else:
+                modifiers, key, action, *args = parts
+                shortcut = key
+
+            if modifiers.lower() not in {"none", "null", ""}:
+                shortcut = f"{modifiers} + {shortcut}"
+
+            description = action.replace("_", " ")
+            if args and args[0]:
+                description += f" — {', '.join(args)}"
+
+            bindings.append(
+                {
+                    "type": BINDING_TYPES[directive],
+                    "shortcut": shortcut,
+                    "action": description,
+                }
+            )
+
+        return bindings
+
+    def show_hotkeys(self) -> None:
+        self.page = "hotkeys"
+        self.set_heading("Mango hotkeys")
+        self.bindings = self.load_bindings()
+
+        listing = self.clear_options()
+        for binding in self.bindings:
+            self.add_item(
+                listing,
+                f"[{binding['type']}] {binding['shortcut']} → {binding['action']}",
+            )
+        self.add_item(listing, "← Back")
+
+        self.set_status(f"{len(self.bindings)} binding(s) loaded from {CONFIG}")
+        listing.focus()
+
+    def on_list_view_selected(self, event: ListView.Selected) -> None:
+        index = event.list_view.index
+        if index is None:
+            return
+
+        if self.page == "main":
+            (self.show_wallpapers, self.show_hotkeys)[index]()
+        elif self.page == "wallpapers":
+            if index == len(self.wallpapers):
+                self.show_main_menu()
+            else:
+                self.set_status(f"Applying {self.wallpapers[index].name}…")
+                self.run_worker(
+                    self.apply_wallpaper(self.wallpapers[index]),
+                    exclusive=True,
+                )
+        elif self.page == "hotkeys":
+            if index == len(self.bindings):
+                self.show_main_menu()
+
+    async def apply_wallpaper(self, wallpaper: Path) -> None:
+        process = await asyncio.create_subprocess_exec(
+            str(WALLPAPER_SCRIPT),
+            str(wallpaper),
+            stdout=asyncio.subprocess.PIPE,
+            stderr=asyncio.subprocess.PIPE,
+        )
+        _, stderr = await process.communicate()
+
+        self.set_status(
+            f"Wallpaper changed to {wallpaper.name}"
+            if process.returncode == 0
+            else stderr.decode(errors="replace").strip()
+        )
+
+    def action_move_down(self) -> None:
+        self.query_one("#options", ListView).action_cursor_down()
+
+    def action_move_up(self) -> None:
+        self.query_one("#options", ListView).action_cursor_up()
+
+    def action_select_current(self) -> None:
+        self.query_one("#options", ListView).action_select_cursor()
+
+    def action_go_back(self) -> None:
+        if self.page == "main":
+            self.exit()
+        else:
+            self.show_main_menu()
+
+
+if __name__ == "__main__":
+    MeraArchMenu().run()

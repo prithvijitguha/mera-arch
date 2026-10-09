@@ -33,7 +33,7 @@
         "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
       }
     },
-    "on-click": "gnome-calendar",
+    "on-click": "gnome-calendar"
   },
   "ext/workspaces": {
     "format": "{icon}",
