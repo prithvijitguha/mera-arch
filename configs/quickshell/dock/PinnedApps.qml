@@ -39,6 +39,7 @@ Singleton {
             id: "chrome-web.whatsapp.com__-Default",
             label: "WhatsApp",
             icon: "chrome-web.whatsapp.com__-Default",
+            icon: Quickshell.env("HOME") + "/.local/share/applications/icons/whatsapp.png",
             execName: "",
             steamId: ""
         },

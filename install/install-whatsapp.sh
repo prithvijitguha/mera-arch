@@ -1,6 +1,7 @@
 #!/bin/bash
 
 mkdir -p ~/.local/share/applications/icons
+
 cp assets/icons/whatsapp.png $HOME/.local/share/applications/icons/whatsapp.png
 
 cat <<EOF >~/.local/share/applications/WhatsApp.desktop
