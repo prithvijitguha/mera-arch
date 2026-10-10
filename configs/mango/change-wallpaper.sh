@@ -1,9 +1,23 @@
 #!/bin/bash
 
-WALLPAPER_DEFAULT_PATH=$HOME/.local/share/backgrounds/tree-tops.webp
+STATE_FILE="${XDG_STATE_HOME:-$HOME/.local/state}/mango-wallpaper"
+FALLBACK="$HOME/.local/share/backgrounds/tree-tops.webp"
 
-WALLPAPER_PATH="${1:-$WALLPAPER_DEFAULT_PATH}"
+mkdir -p "$(dirname "$STATE_FILE")"
 
-matugen image $WALLPAPER_PATH --prefer value
+if [ -n "$1" ]; then
+  WALLPAPER_PATH="$1"
+  printf '%s\n' "$WALLPAPER_PATH" >"$STATE_FILE"
+elif [ -s "$STATE_FILE" ]; then
+  WALLPAPER_PATH="$(cat "$STATE_FILE")"
+else
+  WALLPAPER_PATH="$FALLBACK"
+fi
 
-swaybg -i "$WALLPAPER_PATH" >/dev/null 2>&1 &
+matugen image "$WALLPAPER_PATH" --prefer value
+
+# Stop any existing wallpaper daemon so they don't stack up
+pkill -x swaybg 2>/dev/null
+
+# Detach fully so it survives the menu/terminal closing
+setsid -f swaybg -i "$WALLPAPER_PATH" >/dev/null 2>&1

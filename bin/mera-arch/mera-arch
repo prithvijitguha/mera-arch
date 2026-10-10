@@ -186,46 +186,17 @@ class MeraArchMenu(App[None]):
         elif self.page == "hotkeys" and index == len(self.bindings):
             self.show_main_menu()
 
-    def update_default_wallpaper(self, wallpaper: Path) -> None:
-        script = WALLPAPER_SCRIPT.read_text(encoding="utf-8")
-
-        default_path = str(wallpaper.expanduser().resolve())
-
-        import re
-
-        pattern = r"(?m)^WALLPAPER_DEFAULT_PATH=.*$"
-        replacement = f'WALLPAPER_DEFAULT_PATH="{default_path}"'
-
-        updated_script, count = re.subn(pattern, replacement, script, count=1)
-
-        if count == 0:
-            raise RuntimeError(
-                "WALLPAPER_DEFAULT_PATH was not found in change-wallpaper.sh"
-            )
-
-        WALLPAPER_SCRIPT.write_text(updated_script, encoding="utf-8")
-
     async def apply_wallpaper(self, wallpaper: Path) -> None:
-        self.update_default_wallpaper(wallpaper)
-
         process = await asyncio.create_subprocess_exec(
             str(WALLPAPER_SCRIPT),
-            str(wallpaper),
-            stdout=asyncio.subprocess.PIPE,
+            str(wallpaper.resolve()),
+            stdout=asyncio.subprocess.DEVNULL,
             stderr=asyncio.subprocess.PIPE,
         )
 
-        _, stderr = await process.communicate()
+        await process.communicate()
 
-        if process.returncode == 0:
-            self.set_status(
-                f"Wallpaper changed to {wallpaper.name} and saved as default."
-            )
-        else:
-            self.set_status(
-                stderr.decode(errors="replace").strip()
-                or f"Wallpaper script exited with code {process.returncode}."
-            )
+        self.set_status(f"Wallpaper changed to {wallpaper.name}.")
 
     def action_move_down(self) -> None:
         self.query_one("#options", ListView).action_cursor_down()
