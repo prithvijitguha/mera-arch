@@ -1,7 +1,7 @@
 ignore-empty-password
 show-failed-attempts
 
-image=~/.local/share/backgrounds/lockscreen.webp
+image=~/.local/share/backgrounds/lockscreen/lockscreen.webp
 scaling=fill
 
 indicator-radius=90

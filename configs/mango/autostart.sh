@@ -11,5 +11,3 @@ waybar >/dev/null 2>&1 &
 swayidle -w \
   timeout 300 'swaylock -f' \
   before-sleep 'swaylock -f' &
-
-quickshell -c ~/.config/quickshell &

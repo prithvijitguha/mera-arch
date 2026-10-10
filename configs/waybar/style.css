@@ -243,15 +243,14 @@ window#waybar > box {
 
 #custom-power {
     color: @error;
-
     min-width: 18px;
 
     font-size: 16px;
     font-weight: bold;
 
     transition:
-        background-color 0.2s ease,
-        color 0.2s ease;
+        background-color 0.32s ease,
+        color 0.32s ease;
 }
 
 #custom-power:hover {
@@ -284,6 +283,7 @@ menu menuitem:hover {
     background-color: @surface_container_high;
     color: @on_surface;
 }
+
 
 
 /* Running apps beside workspaces */

@@ -1,5 +1,9 @@
 #!/bin/bash
 
-WALLPAPER_PATH="${1:-$HOME/.local/share/backgrounds/1-tree-tops.webp}"
+WALLPAPER_DEFAULT_PATH=$HOME/.local/share/backgrounds/tree-tops.webp
+
+WALLPAPER_PATH="${1:-$WALLPAPER_DEFAULT_PATH}"
+
+matugen image $WALLPAPER_PATH --prefer value
 
 swaybg -i "$WALLPAPER_PATH" >/dev/null 2>&1 &
