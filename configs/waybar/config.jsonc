@@ -7,7 +7,9 @@
     "custom/running-apps"
   ],
   "modules-center": [
-    "clock"
+    "power-profiles-daemon",
+    "clock",
+    "idle_inhibitor"
   ],
   "modules-right": [
     "network",
@@ -58,6 +60,26 @@
     "interval": 2,
     "format": "{}",
     "tooltip": true
+  },
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip": true,
+    "format-icons": {
+      "default": "",
+      "performance": "",
+      "balanced": "󰶘",
+      "power-saver": ""
+    }
+  },
+  // Idle Inhibitor
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "󰛨",
+      "deactivated": "󰛩"
+    },
+    "tooltip-format-activated": "System Focused",
+    "tooltip-format-deactivated": "Normal Mode"
   },
   // Network 
   "network": {
