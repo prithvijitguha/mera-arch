@@ -1,8 +1,7 @@
 #!/bin/bash
 
 BROWSER="firefox"
-ENGINE="https://google.com/?q="
-
+ENGINE="https://www.google.com/search?q="
 urlencode() {
   python3 -c 'import sys, urllib.parse as u; print(u.quote_plus(sys.argv[1]))' "$1"
 }
