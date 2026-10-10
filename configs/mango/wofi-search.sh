@@ -1,11 +1,4 @@
 #!/bin/bash
-# wofi-search: a small launcher on top of wofi's dmenu mode.
-#   anything    -> web search in Firefox (default engine: Google)
-#   g <query>   -> same as above, explicit
-#   a URL       -> opened directly in Firefox
-#
-# Usage: bind this script to a key. Example for mango (config.conf):
-#   bind=SUPER,s,spawn,~/.config/mango/wofi-search
 
 BROWSER="firefox"
 ENGINE="https://google.com/?q="

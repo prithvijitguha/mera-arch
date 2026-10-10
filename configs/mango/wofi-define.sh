@@ -1,9 +1,4 @@
 #!/bin/bash
-# wofi-define: dictionary lookup launcher on top of wofi's dmenu mode.
-#   Type a word -> definition from ~/.config/mango/define is shown in wofi.
-#
-# Usage: bind this script to a key. Example for mango (config.conf):
-#   bind=SUPER,d,spawn,~/.config/mango/wofi-define
 
 DEFINE="$HOME/.config/mango/define.sh"
 
