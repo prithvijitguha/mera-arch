@@ -284,3 +284,29 @@ menu menuitem:hover {
     background-color: @surface_container_high;
     color: @on_surface;
 }
+
+
+/* Running apps beside workspaces */
+
+#custom-running-apps {
+    background-color: @surface_container;
+
+    color: @primary;
+
+    margin: 3px 3px;
+    padding: 5px 12px;
+
+    border-radius: 999px;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+#custom-running-apps:hover {
+    background-color: @surface_container_high;
+    color: @tertiary;
+}
