@@ -1,0 +1,7 @@
+#![enable(implicit_some)]
+#![enable(unwrap_newtypes)]
+#![enable(unwrap_variant_newtypes)]
+(
+    address: "/home/prithvijit/.local/share/mpd/socket",
+    cache_dir: "/home/prithvijit/Music/rmpc-cache",
+)
