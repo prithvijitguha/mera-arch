@@ -9,5 +9,5 @@ term=Ghostty
 gtk_dark=true
 no_actions=true
 hide_scroll=true
-browser=firefox-esr
+browser=firefox
 insensitive=true
