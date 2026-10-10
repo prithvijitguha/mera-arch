@@ -42,3 +42,5 @@ papirus-icon-theme
 jq 
 wl-clipboard 
 dysk
+rmpc
+mpd
