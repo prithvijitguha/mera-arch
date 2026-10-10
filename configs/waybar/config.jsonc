@@ -22,7 +22,7 @@
   "reload_style_on_change": true,
   "clock": {
     "format": " {:%I:%M %p  %a  %d %b %Y} ",
-    "tooltip-format": "{:%Y}",
+    "tooltip": false,
     "calendar": {
       "mode": "year",
       "mode-mon-col": 3,
@@ -59,11 +59,11 @@
     "return-type": "json",
     "interval": 2,
     "format": "{}",
-    "tooltip": true
+    "tooltip": false
   },
   "power-profiles-daemon": {
     "format": "{icon}",
-    "tooltip": true,
+    "tooltip": false,
     "format-icons": {
       "default": "",
       "performance": "",
@@ -78,8 +78,7 @@
       "activated": "󰛨",
       "deactivated": "󰛩"
     },
-    "tooltip-format-activated": "System Focused",
-    "tooltip-format-deactivated": "Normal Mode"
+    "tooltip": false
   },
   // Network 
   "network": {
@@ -95,7 +94,8 @@
       "󰤥",
       "󰤨"
     ],
-    "on-click": "iwgtk"
+    "on-click": "iwgtk",
+    "tooltip": false
   },
   // ============================================================
   // Audio
@@ -103,7 +103,7 @@
   "pulseaudio": {
     "format": "{icon} {volume}%",
     "format-muted": "󰝟",
-    "tooltip": true,
+    "tooltip": false,
     "format-icons": {
       "headphone": "",
       "speaker": "",
@@ -118,7 +118,8 @@
   },
   "cpu": {
     "interval": 2,
-    "format": " {load}%"
+    "format": " {load}%",
+    "tooltip": false
   },
   // ============================================================
   // Battery
@@ -149,22 +150,23 @@
       "󰂂",
       "󰁹"
     ],
-    "max-length": 25
+    "max-length": 25,
+    "tooltip": false
   },
   // ============================================================
   // Memory
   // ============================================================
   "memory": {
     "format": "󰍛 {used:0.1f}G/{total:0.1f}G",
-    "interval": 4
+    "interval": 4,
+    "tooltip": false
   },
   // ============================================================
   // Power
   // ============================================================
   "custom/power": {
     "format": "⏻",
-    "tooltip": true,
-    "tooltip-format": "Power",
+    "tooltip": false,
     "menu": "on-click",
     "menu-file": "~/.config/waybar/power_menu.xml",
     "menu-actions": {
