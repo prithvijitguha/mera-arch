@@ -38,4 +38,4 @@ matugen
 python-pyfiglet
 python-textual
 btop
-
+papirus-icon-theme
