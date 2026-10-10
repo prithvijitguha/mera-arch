@@ -9,7 +9,7 @@ word=${1:-$(wl-copy -o -selection primary 2>/dev/null || wl-paste 2>/dev/null)}
 }
 
 # Query the local dictionary
-def=$(dict "$word" 2>/dev/null)
+def=$(dict "$word" --formatted)
 
 # Check for missing definitions
 if [[ -z "$def" || "$def" == *"No definitions found"* ]]; then
@@ -18,7 +18,7 @@ if [[ -z "$def" || "$def" == *"No definitions found"* ]]; then
 fi
 
 # Show the dictionary output
-notify-send -t 6000 "$word" "$def"
+notify-send -t 10000 "$word" "$def"
 ### MORE OPTIONS :)
 # Show first definition for each part of speech (thanks @morgengabe1 on youtube)
 # def=$(echo "$query" | jq -r '.[0].meanings[] | "\(.partOfSpeech): \(.definitions[0].definition)\n"')
