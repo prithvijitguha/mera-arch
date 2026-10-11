@@ -49,3 +49,5 @@ python-mutagen
 ffmpeg 
 mangowm
 scenefx
+zsh-completions
+zsh-autosuggestions

@@ -46,3 +46,5 @@ cp -rT ~/.local/share/mera-arch/configs/matugen/templates ~/.config/matugen/temp
 
 # Change default shell to zsh
 chsh -s $(which zsh)
+
+exec zsh
