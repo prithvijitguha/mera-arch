@@ -272,7 +272,7 @@ menu {
 
     border-radius: 12px;
     padding: 4px;
-    animation: menu-fade 0.8s ease-out;
+    animation: menu-fade 0.4s ease-out;
 }
 
 menu menuitem {
@@ -281,7 +281,7 @@ menu menuitem {
     border-radius: 8px;
 
     color: @on_surface_variant;
-    animation: menu-fade 0.6s ease-out;
+    animation: menu-fade 0.4s ease-out;
 }
 
 menu menuitem:hover {
