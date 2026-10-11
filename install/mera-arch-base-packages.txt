@@ -47,3 +47,5 @@ mpd
 yt-dlp
 python-mutagen
 ffmpeg 
+mangowm
+scenefx
