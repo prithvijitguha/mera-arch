@@ -42,6 +42,7 @@ mkdir -p ~/.config/rmpc
 mkdir -p ~/Music/rmpc-cache
 
 cp -rT ~/.local/share/mera-arch/configs/rmpc/config.ron ~/.config/rmpc/config.ron
+cp -rT ~/.local/share/mera-arch/configs/matugen/templates ~/.config/matugen/templates
 
 # Change default shell to zsh
 chsh -s $(which zsh)
