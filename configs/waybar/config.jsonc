@@ -9,7 +9,7 @@
   "modules-center": [
     "power-profiles-daemon",
     "clock",
-    "idle_inhibitor"
+    "custom/idle_toggle"
   ],
   "modules-right": [
     "network",
@@ -72,12 +72,12 @@
     }
   },
   // Idle Inhibitor
-  "idle_inhibitor": {
-    "format": "{icon}",
-    "format-icons": {
-      "activated": "󰛨",
-      "deactivated": "󰛩"
-    },
+  "custom/idle_toggle": {
+    "exec": "~/.config/mango/idle-status.sh",
+    "return-type": "json",
+    "format": "{}",
+    "interval": 2,
+    "on-click": "~/.config/mango/toggle-idle.sh",
     "tooltip": false
   },
   // Network 

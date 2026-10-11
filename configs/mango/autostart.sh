@@ -8,6 +8,8 @@ waybar >/dev/null 2>&1 &
 
 ~/.config/mango/change-wallpaper.sh &
 
-swayidle -w \
-  timeout 300 'swaylock -f' \
-  before-sleep 'swaylock -f' &
+if ! pgrep -x swayidle >/dev/null; then
+  swayidle -w \
+    timeout 300 'swaylock -f' \
+    before-sleep 'swaylock -f' &
+fi
