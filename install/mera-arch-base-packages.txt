@@ -52,3 +52,6 @@ scenefx
 zsh-completions
 zsh-autosuggestions
 pavucontrol
+geeqie
+vlc-plugin-ffmpeg
+
