@@ -54,4 +54,4 @@ zsh-autosuggestions
 pavucontrol
 geeqie
 vlc-plugin-ffmpeg
-
+gparted
