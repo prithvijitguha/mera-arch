@@ -55,3 +55,4 @@ pavucontrol
 geeqie
 vlc-plugin-ffmpeg
 gparted
+btrfs-progs
