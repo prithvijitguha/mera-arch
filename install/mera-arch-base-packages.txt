@@ -56,3 +56,4 @@ geeqie
 vlc-plugin-ffmpeg
 gparted
 btrfs-progs
+ripgrep
