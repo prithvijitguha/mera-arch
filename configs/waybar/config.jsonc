@@ -134,8 +134,9 @@
       "on-discharging-warning": "notify-send -u normal 'Low Battery' 'Battery is below 15%'",
       "on-discharging-critical": "notify-send -u critical 'Very Low Battery' 'Battery is critically low!'",
       "on-charging-100": "notify-send -u normal 'Battery Full!' 'Battery is fully charged'",
-      "on-discharging": "notify-send -u normal 'Discharging'",
-      "on-charging": "notify-send -u normal 'Charging'"
+      // For some reason the battery charging and discharging do not work, I have no idea why
+      "on-discharging": "notify-send -u normal 'Power Switch' 'Discharging'",
+      "on-charging": "notify-send -u normal 'Power Switch' 'Charging'"
     },
     "format": "{icon} {capacity}%",
     "format-charging": "<span foreground='#57e389'>󰂄</span> {capacity}%",
