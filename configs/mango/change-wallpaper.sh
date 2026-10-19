@@ -14,6 +14,8 @@ else
   WALLPAPER_PATH="$FALLBACK"
 fi
 
+notify-send -u normal 'Wallpaper changed' $WALLPAPER_PATH
+
 matugen image "$WALLPAPER_PATH" --prefer value
 
 # Stop any existing wallpaper daemon so they don't stack up
