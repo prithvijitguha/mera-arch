@@ -57,3 +57,4 @@ vlc-plugin-ffmpeg
 gparted
 btrfs-progs
 ripgrep
+android-tools
