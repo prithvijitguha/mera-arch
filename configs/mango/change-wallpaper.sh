@@ -21,3 +21,9 @@ pkill -x swaybg 2>/dev/null
 
 # Detach fully so it survives the menu/terminal closing
 setsid -f swaybg -i "$WALLPAPER_PATH" >/dev/null 2>&1
+
+magick $WALLPAPER_PATH \
+  -blur 0x12 \
+  -fill black \
+  -colorize 30 \
+  ~/.local/share/backgrounds/lockscreen.webp
