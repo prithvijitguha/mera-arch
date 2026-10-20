@@ -14,7 +14,7 @@ else
   WALLPAPER_PATH="$FALLBACK"
 fi
 
-notify-send -u normal 'Wallpaper changed' $WALLPAPER_PATH
+notify-send -u normal 'Wallpaper set to' $WALLPAPER_PATH
 
 matugen image "$WALLPAPER_PATH" --prefer value
 
