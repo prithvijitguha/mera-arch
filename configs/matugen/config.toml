@@ -17,3 +17,7 @@ output_path = '~/.config/ghostty/themes/Matugen'
 [templates.rmpc]
 input_path = '~/.config/matugen/templates/rmpc.con'
 output_path = '~/.config/rmpc/themes/matugen.ron'
+
+[templates.firefox-website-colors]
+input_path = '~/.config/matugen/templates/firefox-colors.css'
+output_path = '~/.config/mozilla/firefox/gk62anab.default-release/chrome/colors.css'
