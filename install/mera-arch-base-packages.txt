@@ -56,3 +56,5 @@ geeqie
 vlc-plugin-ffmpeg
 gparted
 btrfs-progs
+zathura
+zathura-pdf-mupdf
