@@ -17,7 +17,6 @@ border-color=#81A1C1
 
 # Notification behavior
 ignore-timeout=0
-group-by=app-name
 format=<b>%s</b>\n%b
 markup=1
 default-timeout=5000

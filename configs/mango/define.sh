@@ -12,7 +12,7 @@ def=$(dict "$word" --formatted 2>/dev/null)
 
 if [[ -z "$def" || "$def" == *"No definitions found"* ]]; then
   notify-send -h string:bgcolor:#bf616a -t 3000
-  "No definition found for $word."
+  "No definition found for $word"
   exit 0
 fi
 

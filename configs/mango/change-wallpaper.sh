@@ -14,6 +14,8 @@ else
   WALLPAPER_PATH="$FALLBACK"
 fi
 
+notify-send -u normal 'Wallpaper set to' $WALLPAPER_PATH
+
 matugen image "$WALLPAPER_PATH" --prefer value
 
 # Stop any existing wallpaper daemon so they don't stack up
@@ -21,3 +23,7 @@ pkill -x swaybg 2>/dev/null
 
 # Detach fully so it survives the menu/terminal closing
 setsid -f swaybg -i "$WALLPAPER_PATH" >/dev/null 2>&1
+
+magick $WALLPAPER_PATH \
+  -blur 0x12 \
+  ~/.local/share/backgrounds/lockscreen/lockscreen.webp
