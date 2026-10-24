@@ -43,6 +43,7 @@ window#waybar > box {
 #cpu,
 #memory,
 #battery,
+#bluetooth,
 #custom-power {
     background-color: @surface_container;
     color: @on_surface;
@@ -211,6 +212,19 @@ window#waybar > box {
 }
 
 #memory:hover {
+    background-color: @surface_container_high;
+}
+
+
+/* ============================================================
+ * Bluetooth
+ * ============================================================ */
+
+#bluetooth {
+    color: @tertiary;
+}
+
+#bluetooth:hover {
     background-color: @surface_container_high;
 }
 
