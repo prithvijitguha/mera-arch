@@ -60,3 +60,6 @@ ripgrep
 android-tools
 zathura
 zathura-pdf-mupdf
+jellyfin-ffmpeg 
+jellyfin-server 
+jellyfin-web
