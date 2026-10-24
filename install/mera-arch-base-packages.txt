@@ -63,3 +63,4 @@ zathura-pdf-mupdf
 jellyfin-ffmpeg 
 jellyfin-server 
 jellyfin-web
+delfin
