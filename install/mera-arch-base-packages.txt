@@ -63,3 +63,7 @@ jellyfin-server
 jellyfin-web
 man-db 
 man-pages
+pipewire
+pipewire-pulse
+xdg-desktop-portal-wlr
+rofi
