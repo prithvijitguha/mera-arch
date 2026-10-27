@@ -47,6 +47,9 @@ cp -rT ~/.local/share/mera-arch/configs/matugen/templates ~/.config/matugen/temp
 # Setup the mera-arch scripts
 cp -rT ~/.local/share/mera-arch/bin/mera-arch ~/.local/share/mera-arch
 
+# Screen share settings for xdg portal
+cp -rT ~/.local/share/mera-arch/configs/xdg-desktop-portal-wlr/config ~/.config/xdg-desktop-portal-wlr/config
+
 # Change default shell to zsh
 chsh -s $(which zsh)
 

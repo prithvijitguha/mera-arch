@@ -1,0 +1,4 @@
+# ~/.config/xdg-desktop-portal-wlr/config
+[screencast]
+output_name=HDMI-A-1
+chooser_type=none
