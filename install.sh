@@ -50,6 +50,11 @@ cp -rT ~/.local/share/mera-arch/bin/mera-arch ~/.local/share/mera-arch
 # Screen share settings for xdg portal
 cp -rT ~/.local/share/mera-arch/configs/xdg-desktop-portal-wlr/config ~/.config/xdg-desktop-portal-wlr/config
 
+# Create venv for
+uv venv --directory ~/.local/share/mera-arch/
+source ~/.local/share/mera-arch/.venv/bin/activate
+uv pip install pyfiglet textual
+
 # Change default shell to zsh
 chsh -s $(which zsh)
 

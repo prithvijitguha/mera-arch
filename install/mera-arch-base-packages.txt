@@ -66,3 +66,4 @@ man-pages
 pipewire
 pipewire-pulse
 xdg-desktop-portal-wlr
+uv 
