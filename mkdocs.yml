@@ -1,0 +1,27 @@
+site_name: Mera-Arch
+docs_dir: bin/mera-arch/docs/source
+site_dir: bin/mera-arch/docs/build
+nav:
+  - Home: index.md
+  - Getting started:
+      - Hotkeys: hotkeys.md
+      - Installation Guide: install_guide.md
+
+theme:
+  name: material
+  logo: static/mera-arch-full-logo.png
+  favicon: static/mera-arch-logo.svg
+  palette:
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
