@@ -208,18 +208,21 @@ class MeraArchMenu(App[None]):
         mkdocs serve \
             --dev-addr 127.0.0.1:8080 \
             >/dev/null 2>&1 &
-
+        MKDOCS_PID=$!
+ 
         # Wait for mkdocs to be ready
         for i in $(seq 1 20); do
             curl -sf http://127.0.0.1:8080/ >/dev/null && break
             sleep 0.5
         done
-
+ 
         chromium \
             --app="http://127.0.0.1:8080/" \
             --name=Manual \
             --class=Manual \
-            &>/dev/null &
+            &>/dev/null
+ 
+        kill $MKDOCS_PID 2>/dev/null
         """
 
         await asyncio.create_subprocess_exec(
