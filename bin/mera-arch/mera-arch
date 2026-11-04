@@ -89,7 +89,7 @@ class MeraArchMenu(App[None]):
         listing = self.clear_options()
         self.add_item(listing, "Wallpaper")
         self.add_item(listing, "Hotkeys")
-        self.set_status("Select Wallpaper or Hotkeys.")
+        self.add_item(listing, "Docs")
         listing.focus()
 
     def show_wallpapers(self) -> None:
@@ -173,7 +173,12 @@ class MeraArchMenu(App[None]):
             return
 
         if self.page == "main":
-            (self.show_wallpapers, self.show_hotkeys)[index]()
+            if index == 0:
+                self.show_wallpapers()
+            elif index == 1:
+                self.show_hotkeys()
+            elif index == 2:
+                self.run_worker(self.open_docs(), exclusive=True)
         elif self.page == "wallpapers":
             if index == len(self.wallpapers):
                 self.show_main_menu()
@@ -197,6 +202,36 @@ class MeraArchMenu(App[None]):
         await process.communicate()
 
         self.set_status(f"Wallpaper changed to {wallpaper.name}.")
+
+    async def open_docs(self) -> None:
+        command = """
+        mkdocs serve \
+            --dev-addr 127.0.0.1:8080 \
+            >/dev/null 2>&1 &
+
+        # Wait for mkdocs to be ready
+        for i in $(seq 1 20); do
+            curl -sf http://127.0.0.1:8080/ >/dev/null && break
+            sleep 0.5
+        done
+
+        chromium \
+            --app="http://127.0.0.1:8080/" \
+            --name=Manual \
+            --class=Manual \
+            &>/dev/null &
+        """
+
+        await asyncio.create_subprocess_exec(
+            "bash",
+            "-c",
+            command,
+            stdout=asyncio.subprocess.DEVNULL,
+            stderr=asyncio.subprocess.DEVNULL,
+            start_new_session=True,
+        )
+
+        self.set_status("Documentation server launched.")
 
     def action_move_down(self) -> None:
         self.query_one("#options", ListView).action_cursor_down()

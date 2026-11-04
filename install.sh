@@ -53,7 +53,7 @@ cp -rT ~/.local/share/mera-arch/configs/xdg-desktop-portal-wlr/config ~/.config/
 # Create venv for
 uv venv --directory ~/.local/share/mera-arch/
 source ~/.local/share/mera-arch/.venv/bin/activate
-uv pip install pyfiglet textual
+uv pip install pyfiglet textual mkdocs mkdocs-material
 
 # Change default shell to zsh
 chsh -s $(which zsh)
