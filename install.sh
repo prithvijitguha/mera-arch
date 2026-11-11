@@ -8,6 +8,18 @@ sudo pacman -Syu $(cat ~/.local/share/mera-arch/install/mera-arch-base-packages.
 source ~/.local/share/mera-arch/install/install-omz.sh
 source ~/.local/share/mera-arch/install/install-tpm-tmux.sh
 
+# Config folders
+mkdir -p ~/.config/.vim
+
+# rmpc setup
+mkdir -p ~/.config/rmpc
+mkdir -p ~/Music/rmpc-cache
+
+# Matugen setup
+mkdir -p ~/.config/matugen/templates
+mkdir -p ~/.config/matugen/generated
+mkdir -p ~/.config/ghostty/themes
+
 # Then start adding the configs
 cp ~/.local/share/mera-arch/configs/.bashrc ~/.bashrc
 cp ~/.local/share/mera-arch/configs/.zshrc ~/.zshrc
@@ -29,17 +41,8 @@ cp -rT ~/.local/share/mera-arch/configs/swaylock ~/.config/swaylock
 # Backgrounds
 cp -rT ~/.local/share/mera-arch/assets/backgrounds ~/.local/share/backgrounds
 
-# Matugen setup
-mkdir -p ~/.config/matugen/templates
-mkdir -p ~/.config/matugen/generated
-mkdir -p ~/.config/ghostty/themes
-
 cp -rT ~/.local/share/mera-arch/configs/matugen/config.toml ~/.config/matugen/config.toml
 cp -rT ~/.local/share/mera-arch/configs/matugen/templates ~/.config/matugen/templates
-
-# rmpc setup
-mkdir -p ~/.config/rmpc
-mkdir -p ~/Music/rmpc-cache
 
 cp -rT ~/.local/share/mera-arch/configs/rmpc/config.ron ~/.config/rmpc/config.ron
 cp -rT ~/.local/share/mera-arch/configs/matugen/templates ~/.config/matugen/templates
